@@ -1,0 +1,25 @@
+@mixin horizontally-spaced-out($x-margin) {
+  & > * {
+    margin-left: $x-margin;
+    margin-right: $x-margin;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+@mixin vertically-spaced-out($y-margin) {
+  & > * {
+    margin-top: $y-margin;
+    margin-bottom: $y-margin;
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@import '../../../global/style/variable', '../../../global/style/mixins';
+
+$root: '.task-list';
+
+#{$root} {
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: $secondary-bg-color;
+  width: 350px;
+  @include vertically-spaced-out(8px);
+
+  &_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-family: $semi-bold-font;
+    margin-bottom: 14px;
+
+    &_list-type {
+      color: $primary-text-color;
+    }
+
+    &_task-count {
+      padding: 2px 8px;
+      color: $secondary-text-color;
+      background-color: $primary-theme-color;
+      border-radius: 4px;
+    }
+  }
+
+  &_atnBtn {
+    &.MuiButton-root {
+      margin-bottom: 10px;
+      background-color: $primary-theme-color;
+      color: $secondary-text-color;
+      box-shadow: none;
+      &:hover {
+        background-color: $primary-theme-color;
+        box-shadow: none;
+      }
+    }
+  }
+}

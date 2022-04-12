@@ -1,0 +1,19 @@
+@import '../../../global/style/variable';
+
+$root: '.avatar';
+
+#{$root} {
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  font-family: $bold-font;
+  letter-spacing: 1px;
+  background: var(--bg-color);
+  color: $ternary-text-color;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

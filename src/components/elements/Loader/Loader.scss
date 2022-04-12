@@ -1,0 +1,76 @@
+@import '../../../global/style/variable';
+
+$root: '.loader';
+
+#{$root} {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.2em;
+  height: 1.2em;
+  background-color: transparent;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    display: block;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 3em;
+  }
+
+  &::before {
+    z-index: 1;
+    top: 2em;
+    background: rgba($primary-text-color, 0.3);
+    transform: translate(-50%, -50%) rotateX(60deg);
+    animation: shadow 0.75s infinite;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
+  }
+
+  &::after {
+    z-index: 2;
+    text-shadow: 0 0 0.3em $primary-bg-color;
+    background: $primary-theme-color;
+    transform: translate(-50%, -2em);
+    animation: bounce 0.75s infinite;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    top: 0;
+  }
+  80% {
+    height: 1.2em;
+    width: 1.2em;
+  }
+  100% {
+    top: 2.8em;
+    height: 0.7em;
+    width: 1.8em;
+  }
+}
+
+@keyframes shadow {
+  0% {
+    width: 0.7em;
+    height: 0.7em;
+    filter: blur(0.2em);
+  }
+  90% {
+    width: 1.2em;
+    height: 1.2em;
+    filter: blur(0em);
+  }
+  100% {
+    background: rgba($primary-text-color, 0.7);
+  }
+}

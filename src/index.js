@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import 'index.scss';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import App from 'containers';
 import reportWebVitals from 'reportWebVitals';
+import { CONTEXT } from 'config';
+import 'index.scss';
+
+const RootComponent = () => {
+  useEffect(() => {
+    let { origin, pathname } = window.location;
+
+    if (pathname === '/' || !pathname.includes(CONTEXT)) {
+      let url = `${origin}${CONTEXT}`;
+      window.location.replace(url);
+    }
+  }, []);
+
+  return (
+    <Router>
+      <Route path={CONTEXT} component={App} />
+    </Router>
+  );
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RootComponent />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

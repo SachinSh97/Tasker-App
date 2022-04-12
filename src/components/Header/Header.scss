@@ -1,0 +1,12 @@
+@import '../../global/style/variable';
+
+$root: '.taskboard-header';
+
+#{$root} {
+  padding: 14px 28px;
+  box-shadow: 0 7px 9px 0 rgba(0, 0, 0, 0.2);
+  .title {
+    font-family: $bold-font;
+    font-size: 24px;
+  }
+}

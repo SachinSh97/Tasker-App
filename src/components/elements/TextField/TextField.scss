@@ -1,0 +1,41 @@
+@import '../../../global/style/variable';
+
+$root: '.material-textfield';
+
+#{$root} {
+  .MuiInputBase-root {
+    border-radius: 4px;
+    background-color: $secondary-bg-color;
+    color: $primary-text-color;
+    line-height: 1.29;
+  }
+  &.error {
+    .MuiInputBase-root {
+      background-color: $error-bg-color;
+    }
+  }
+  .MuiInputBase-input {
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    line-height: 2;
+    padding: 0.5em 0.71em;
+  }
+
+  .MuiFormHelperText-contained {
+    margin: 0;
+  }
+
+  .MuiFormHelperText-root.Mui-error {
+    font-size: 0.71rem;
+    font-weight: 400;
+    color: $error-text-color;
+    margin-left: 1.6em;
+  }
+
+  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+  .MuiOutlinedInput-root:hover fieldset,
+  .MuiOutlinedInput-notchedOutline {
+    border: none;
+  }
+}

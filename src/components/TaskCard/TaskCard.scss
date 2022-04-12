@@ -1,0 +1,30 @@
+@import '../../global/style/variable', '../../global/style/mixins';
+
+$root: '.task-card';
+
+#{$root} {
+  display: flex;
+  flex-direction: column;
+  @include vertically-spaced-out(5px);
+
+  &_header {
+    font-family: $semi-bold-font;
+    font-size: 16px;
+    color: $primary-text-color;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  &_description {
+    font-size: 14px;
+    color: $description-text-color;
+  }
+
+  &_assignee {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,10 @@
+@import '../../global/style/variable', '../../global/style/mixins';
+
+$root: '.task-board';
+
+#{$root} {
+  display: flex;
+  align-items: flex-start;
+  padding: 18px;
+  @include horizontally-spaced-out(14px);
+}
