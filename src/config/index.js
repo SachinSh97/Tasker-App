@@ -7,6 +7,20 @@ export const taskStatus = [
   { label: 'Done', value: 'DN' },
 ];
 
+export const projectSetupSteps = [
+  'Create Account',
+  'Add Members',
+  'Setup Project',
+];
+export const regex = {
+  nameValidator: `^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$`,
+  passwordValidator: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
+};
+
+export const storage = 'app';
+
+// export const availableAvatrColor=
+
 const taskList = [
   {
     title: 'Task 1',

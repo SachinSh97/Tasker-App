@@ -8,10 +8,22 @@
 export const debouncing = (func, delay) => {
   let timeOut;
   return function (...args) {
-    let context = this;
     clearTimeout(timeOut);
     timeOut = setTimeout(() => {
-      func(...args).call(context);
+      func(...args);
     }, delay);
   };
+};
+
+/**
+ * function to get random color
+ */
+export const getRandomColor = () => {
+  let color = '#';
+  let letters = '0123456789ABCDEF'.split('');
+  color += letters[Math.round(Math.random() * 5)];
+  for (var i = 0; i < 5; i++) {
+    color += letters[Math.round(Math.random() * 15)];
+  }
+  return color;
 };

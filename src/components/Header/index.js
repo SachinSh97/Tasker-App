@@ -1,11 +1,55 @@
 import React from 'react';
+import LogoutIcon from '@mui/icons-material/Logout';
 import './Header.scss';
 
-const Header = ({ user }) => {
+const Avatar = React.lazy(() => import('components/elements/Avatar'));
+const SearchBox = React.lazy(() => import('components/SearchBox'));
+
+const Header = ({
+  user,
+  project,
+  members,
+  assigneeId,
+  handleUnregister,
+  handleSearchData,
+  setAssigneeId,
+}) => {
+  const allMembers = [{ ...user }, ...members];
+
+  const handleSetAssigneeId = (memberId) => {
+    setAssigneeId(memberId !== assigneeId ? memberId : '');
+  };
+
   return (
     <div className="taskboard-header">
-      <div className="title">Tasks board </div>
-      {user && <div></div>}
+      <div className="taskboard-header_search-section">
+        <SearchBox
+          placeholder="Search tasks by name"
+          onFetchData={handleSearchData}
+        />
+        {user && (
+          <div className="user">
+            <span className="name">
+              {`${user?.firstName ?? ''} ${user?.lastName ?? ''}`}
+            </span>
+            <LogoutIcon onClick={handleUnregister} />
+          </div>
+        )}
+      </div>
+      <div className="taskboard-header_filter-section">
+        <span className="title">{project?.project ?? ''}</span>
+        <span className="members">
+          {allMembers?.map((member, index) => (
+            <Avatar
+              key={index}
+              active={member?.id === assigneeId}
+              name={`${member?.firstName ?? ''} ${member?.lastName ?? ''}`}
+              color={member?.color ?? ''}
+              onClick={() => handleSetAssigneeId(member?.id)}
+            />
+          ))}
+        </span>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,74 @@
+@import '../../../global/style/variable', '../../../global/style/mixins';
+
+$root: '.add-member-form';
+
+#{$root} {
+  &_header {
+    font-size: 28px;
+    font-family: $semi-bold-font;
+    color: $secondary-text-color;
+  }
+
+  &_body {
+    width: 100%;
+    @include vertically-spaced-out(16px);
+
+    .member-details {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .name {
+        font-size: 18px;
+        font-family: $semi-bold-font;
+        letter-spacing: 1px;
+        margin-left: 8px;
+      }
+
+      .atnBtn {
+        display: flex;
+        @include horizontally-spaced-out(10px);
+
+        svg {
+          color: $secondary-text-color;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .form {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &_fields {
+        display: flex;
+        align-items: center;
+        @include horizontally-spaced-out(14px);
+      }
+
+      &_atnBtn {
+        display: flex;
+        @include horizontally-spaced-out(10px);
+
+        svg {
+          color: $secondary-text-color;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &_atnBtn {
+    &.MuiButton-root {
+      margin-bottom: 10px;
+      background-color: $primary-theme-color;
+      color: $secondary-text-color;
+      box-shadow: none;
+      &:hover {
+        background-color: $primary-theme-color;
+        box-shadow: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+@import '../../../global/style/variable', '../../../global/style/mixins';
+
+$root: '.setup-project-form';
+
+#{$root} {
+  &_header {
+    font-size: 28px;
+    font-family: $semi-bold-font;
+    color: $secondary-text-color;
+  }
+
+  &_body {
+    width: 100%;
+    margin-bottom: 40px;
+    @include vertically-spaced-out(14px);
+  }
+}

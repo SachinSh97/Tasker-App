@@ -1,0 +1,20 @@
+@import '../../../global/style/variable', '../../../global/style/mixins';
+
+$root: '.create-task';
+
+#{$root} {
+  width: 80%;
+
+  .MuiDialogTitle-root {
+    font-size: 20px;
+    font-family: $semi-bold-font;
+  }
+
+  &_body {
+    @include vertically-spaced-out(14px);
+  }
+
+  &_atn {
+    @include horizontally-spaced-out(10px);
+  }
+}

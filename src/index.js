@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import App from 'containers';
 import reportWebVitals from 'reportWebVitals';
 import { CONTEXT } from 'config';
+import rootStore from 'store';
 import 'index.scss';
+
+const { store } = rootStore;
 
 const RootComponent = () => {
   useEffect(() => {
@@ -25,7 +29,9 @@ const RootComponent = () => {
 
 ReactDOM.render(
   <React.StrictMode>
-    <RootComponent />
+    <Provider store={store}>
+      <RootComponent />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

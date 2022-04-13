@@ -6,9 +6,25 @@ const Loader = React.lazy(() => import('components/elements/Loader'));
 const TaskCard = React.lazy(() => import('components/TaskCard'));
 const Button = React.lazy(() => import('components/elements/Button'));
 
-const TaskList = ({ taskListType, taskList }) => {
+const TaskList = ({
+  taskListType,
+  taskList,
+  assigneeList,
+  handleEditTask,
+  handleDeleteTask,
+  handleCreateTask,
+}) => {
   const renderTaskList = (taskList) =>
-    taskList?.map((task) => <TaskCard {...task} />) ?? [];
+    taskList?.map((task) => (
+      <TaskCard
+        {...task}
+        assignee={assigneeList?.find(
+          (assignee) => assignee?.id == task?.assignee,
+        )}
+        handleEditTask={handleEditTask}
+        handleDeleteTask={handleDeleteTask}
+      />
+    )) ?? [];
 
   return (
     <Suspense fallback={<Loader />}>
@@ -25,7 +41,7 @@ const TaskList = ({ taskListType, taskList }) => {
           rootClass="task-list_atnBtn"
           fullWidth={true}
           content={<AddIcon />}
-          onClick={() => {}}
+          onClick={() => handleCreateTask(taskListType?.value)}
         />
         {renderTaskList(taskList)}
       </div>

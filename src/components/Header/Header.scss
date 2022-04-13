@@ -1,12 +1,53 @@
-@import '../../global/style/variable';
+@import '../../global/style/variable', '../../global/style/mixins';
 
 $root: '.taskboard-header';
 
 #{$root} {
-  padding: 14px 28px;
-  box-shadow: 0 7px 9px 0 rgba(0, 0, 0, 0.2);
-  .title {
-    font-family: $bold-font;
-    font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 18px 0 18px;
+  margin-top: 20px;
+  @include vertically-spaced-out(24px);
+
+  &_search-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .MuiTextField-root {
+      flex: 1;
+    }
+
+    .user {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex: 2;
+      @include horizontally-spaced-out(8px);
+
+      svg {
+        cursor: pointer;
+        color: $secondary-text-color;
+      }
+    }
+  }
+
+  &_filter-section {
+    display: flex;
+    align-items: center;
+
+    .title {
+      font-size: 28px;
+      font-family: $regular-font;
+      letter-spacing: 1px;
+      margin-left: 12px;
+      margin-right: 18px;
+    }
+
+    .members {
+      display: flex;
+      align-items: center;
+      @include horizontally-spaced-out(1px);
+    }
   }
 }

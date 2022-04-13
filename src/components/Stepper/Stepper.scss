@@ -1,0 +1,26 @@
+@import '../../global/style/mixins';
+
+$root: '.material-stepper';
+
+#{$root} {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 80%;
+  margin: auto;
+
+  &_header {
+    margin-bottom: 60px;
+  }
+
+  &_body {
+    overflow: scroll;
+    height: 450px;
+  }
+
+  &_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

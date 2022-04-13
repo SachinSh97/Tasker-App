@@ -6,8 +6,7 @@ $root: '.avatar';
   width: 30px;
   height: 30px;
   font-size: 12px;
-  font-family: $bold-font;
-  letter-spacing: 1px;
+  font-family: $regular-font;
   background: var(--bg-color);
   color: $ternary-text-color;
   border-radius: 50%;
@@ -16,4 +15,9 @@ $root: '.avatar';
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  text-transform: uppercase;
+
+  &.active {
+    border: 3px solid $secondary-text-color;
+  }
 }

@@ -1,0 +1,19 @@
+@import '../../../global/style/variable';
+
+$root: '.material-select';
+
+#{$root} {
+  &.MuiSelect-select {
+    background-color: $secondary-bg-color;
+  }
+}
+.MuiOutlinedInput-notchedOutline {
+  border: none;
+  font-family: $medium-font;
+}
+
+.MuiInputLabel-root {
+  font-family: $medium-font;
+  font-size: 14px;
+  opacity: 0.7;
+}

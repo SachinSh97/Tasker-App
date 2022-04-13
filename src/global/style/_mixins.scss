@@ -1,25 +1,25 @@
 @mixin horizontally-spaced-out($x-margin) {
   & > * {
-    margin-left: $x-margin;
-    margin-right: $x-margin;
+    margin-left: $x-margin !important;
+    margin-right: $x-margin !important;
     &:first-child {
-      margin-left: 0;
+      margin-left: 0 !important;
     }
     &:last-child {
-      margin-right: 0;
+      margin-right: 0 !important;
     }
   }
 }
 
 @mixin vertically-spaced-out($y-margin) {
   & > * {
-    margin-top: $y-margin;
-    margin-bottom: $y-margin;
+    margin-top: $y-margin !important;
+    margin-bottom: $y-margin !important;
     &:first-child {
-      margin-top: 0;
+      margin-top: 0 !important;
     }
     &:last-child {
-      margin-bottom: 0;
+      margin-bottom: 0 !important;
     }
   }
 }

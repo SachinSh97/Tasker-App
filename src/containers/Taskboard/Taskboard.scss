@@ -6,5 +6,6 @@ $root: '.task-board';
   display: flex;
   align-items: flex-start;
   padding: 18px;
+  margin-top: 16px;
   @include horizontally-spaced-out(14px);
 }

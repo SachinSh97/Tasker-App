@@ -2,7 +2,6 @@ import React from 'react';
 import Proptypes from 'prop-types';
 import classNames from 'classnames';
 import MaterialButton from '@mui/material/Button';
-import './Button.scss';
 
 const Button = ({
   rootClass,
@@ -10,6 +9,7 @@ const Button = ({
   startIcon,
   content,
   fullWidth,
+  disabled,
   onClick,
 }) => {
   return (
@@ -18,6 +18,7 @@ const Button = ({
       variant={variant}
       startIcon={startIcon}
       fullWidth={fullWidth}
+      disabled={disabled}
       onClick={onClick}
     >
       {content}
@@ -26,17 +27,20 @@ const Button = ({
 };
 
 Button.defaultProps = {
+  rootClass: '',
   variant: 'contained',
   startIcon: null,
   content: '',
   fullwidth: false,
+  disabled: false,
   onClick: () => {},
 };
 
 Button.propTypes = {
+  rootClass: Proptypes.string,
   variant: Proptypes.string,
   startIcon: Proptypes.element,
-  content: Proptypes.element,
+  content: Proptypes.node,
   fullwidth: Proptypes.bool,
   onClick: Proptypes.func,
 };

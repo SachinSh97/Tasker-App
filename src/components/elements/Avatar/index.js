@@ -1,8 +1,9 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import classNames from 'classnames';
 import './Avatar.scss';
 
-const Avatar = ({ name, color }) => {
+const Avatar = ({ name, color, active, onClick }) => {
   const renderText = (name) => {
     const nameArr = name?.split(' ');
     let text = '';
@@ -16,7 +17,12 @@ const Avatar = ({ name, color }) => {
   };
 
   return (
-    <div className="avatar" style={{ '--bg-color': color }} title={name}>
+    <div
+      className={classNames('avatar', { active })}
+      style={{ '--bg-color': color }}
+      title={name}
+      onClick={onClick}
+    >
       {renderText(name)}
     </div>
   );
