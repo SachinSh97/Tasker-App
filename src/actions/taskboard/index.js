@@ -3,6 +3,7 @@ import {
   UPDATE_INPROGRESS_LIST,
   UPDATE_ASSIGNED_LIST,
   UPDATE_DONE_LIST,
+  CLEAR_TASK_BOARD,
 } from './actionTypes';
 
 export const updateTodoListAction = (payload) => ({
@@ -28,3 +29,5 @@ export const updateDoneListAction = (payload) => ({
   doneTask: payload?.taskDetails ?? {},
   doneOpt: payload?.operation ?? {},
 });
+
+export const clearTaskBoardAction = () => ({ type: CLEAR_TASK_BOARD });

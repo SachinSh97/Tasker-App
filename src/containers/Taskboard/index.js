@@ -10,6 +10,7 @@ import {
   updateAssignedListAction,
   updateInprogressListAction,
   updateDoneListAction,
+  clearTaskBoardAction,
 } from 'actions/taskboard';
 import { unregisterUserAction } from 'actions/authentication';
 import './Taskboard.scss';
@@ -105,6 +106,7 @@ const Taskboard = ({
   const handleUnregister = () => {
     removeItem(storage);
     actions?.unregisterUser();
+    actions?.clearTaskBoard();
     history?.push(`${CONTEXT}/${containers.register}`);
   };
 
@@ -196,6 +198,7 @@ const mapDispatchToProps = (dispatch) => ({
       updateInprogressList: updateInprogressListAction,
       updateDoneList: updateDoneListAction,
       unregisterUser: unregisterUserAction,
+      clearTaskBoard: clearTaskBoardAction,
     },
     dispatch,
   ),

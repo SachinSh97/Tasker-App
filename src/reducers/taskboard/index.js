@@ -3,6 +3,7 @@ import {
   UPDATE_ASSIGNED_LIST,
   UPDATE_INPROGRESS_LIST,
   UPDATE_DONE_LIST,
+  CLEAR_TASK_BOARD,
 } from 'actions/taskboard/actionTypes';
 
 const initialState = {
@@ -63,6 +64,8 @@ const taskboardReducers = (state = initialState, action) => {
       }
 
       return { ...state, doneTasks: [...draftDoneTasks] };
+    case CLEAR_TASK_BOARD:
+      return { ...initialState };
     default:
       return state;
   }
