@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import Proptypes from 'prop-types';
 import SearchIcon from '@mui/icons-material/Search';
 import { debouncing } from '../../utils/helper';
 
@@ -26,6 +27,16 @@ const SearchBox = ({ placeholder, onFetchData }) => {
       onChange={handleOnChange}
     />
   );
+};
+
+SearchBox.defaultProps = {
+  placeholder: '',
+  onFetchData: () => {},
+};
+
+SearchBox.propTypes = {
+  placeholder: Proptypes.string,
+  onFetchData: Proptypes.func,
 };
 
 export default SearchBox;

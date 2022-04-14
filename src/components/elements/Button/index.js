@@ -42,6 +42,7 @@ Button.propTypes = {
   startIcon: Proptypes.element,
   content: Proptypes.node,
   fullwidth: Proptypes.bool,
+  disabled: Proptypes.bool,
   onClick: Proptypes.func,
 };
 

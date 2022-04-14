@@ -31,11 +31,15 @@ const Avatar = ({ name, color, active, onClick }) => {
 Avatar.defaultProps = {
   name: '',
   color: '',
+  active: false,
+  onClick: () => {},
 };
 
 Avatar.propTypes = {
   name: Proptypes.string,
   color: Proptypes.string,
+  active: Proptypes.bool,
+  onClick: Proptypes.func,
 };
 
 export default Avatar;

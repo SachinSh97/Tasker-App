@@ -1,4 +1,5 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import classNames from 'classnames';
 import './Card.scss';
 
@@ -8,6 +9,18 @@ const Card = ({ classname, onClick, children }) => {
       {children}
     </div>
   );
+};
+
+Card.defaultProps = {
+  classname: '',
+  children: '',
+  onClick: () => {},
+};
+
+Card.propTypes = {
+  classname: Proptypes.string,
+  children: Proptypes.node,
+  onClick: Proptypes.func,
 };
 
 export default Card;

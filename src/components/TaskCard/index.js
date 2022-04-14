@@ -1,4 +1,5 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import { Draggable } from 'react-beautiful-dnd';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import './TaskCard.scss';
@@ -55,6 +56,28 @@ const TaskCard = ({
       )}
     </Draggable>
   );
+};
+
+TaskCard.defaultProps = {
+  id: '',
+  title: '',
+  description: '',
+  assignee: {},
+  status: '',
+  index: NaN,
+  handleEditTask: () => {},
+  handleDeleteTask: () => {},
+};
+
+TaskCard.propTypes = {
+  id: Proptypes.string,
+  title: Proptypes.string,
+  description: Proptypes.string,
+  assignee: Proptypes.object,
+  status: Proptypes.string,
+  index: Proptypes.number,
+  handleEditTask: Proptypes.func,
+  handleDeleteTask: Proptypes.func,
 };
 
 export default TaskCard;

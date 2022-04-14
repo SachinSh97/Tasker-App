@@ -1,4 +1,5 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import MaterialSelect from '@mui/material/Select';
@@ -35,6 +36,26 @@ const Select = ({
       {error && <FormHelperText>{helperText}</FormHelperText>}
     </FormControl>
   );
+};
+
+Select.defaultProps = {
+  value: '',
+  name: '',
+  options: [],
+  label: '',
+  helperText: '',
+  error: false,
+  handleChange: () => {},
+};
+
+Select.propTypes = {
+  value: Proptypes.string,
+  name: Proptypes.string,
+  options: Proptypes.arrayOf(Proptypes.object),
+  label: Proptypes.string,
+  helperText: Proptypes.string,
+  error: Proptypes.bool,
+  handleChange: Proptypes.func,
 };
 
 export default Select;

@@ -111,7 +111,7 @@ const AddMemberForm = ({ members, setMembers }) => {
     );
 
   const renderMemberCreationForm = (member) => (
-    <div className="form">
+    <div className="form" key={member?.id}>
       <div className="form_fields">
         <TextField
           name="firstName"

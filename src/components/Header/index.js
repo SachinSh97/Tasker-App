@@ -1,4 +1,5 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import LogoutIcon from '@mui/icons-material/Logout';
 import './Header.scss';
 
@@ -52,6 +53,26 @@ const Header = ({
       </div>
     </div>
   );
+};
+
+Header.defaultProps = {
+  user: {},
+  project: {},
+  members: [],
+  assigneeId: '',
+  handleUnregister: () => {},
+  handleSearchData: () => {},
+  setAssigneeId: () => {},
+};
+
+Header.propTypes = {
+  user: Proptypes.object,
+  project: Proptypes.object,
+  members: Proptypes.array,
+  assigneeId: Proptypes.string,
+  handleUnregister: Proptypes.func,
+  handleSearchData: Proptypes.func,
+  setAssigneeId: Proptypes.func,
 };
 
 export default Header;

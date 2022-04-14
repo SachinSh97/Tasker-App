@@ -1,4 +1,5 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import MaterialStepper from '@mui/material/Stepper';
 import MaterialStep from '@mui/material/Step';
 import MaterialStepLabel from '@mui/material/StepLabel';
@@ -48,6 +49,22 @@ const Stepper = ({
       </div>
     </div>
   );
+};
+
+Stepper.defaultProps = {
+  skipStep: NaN,
+  children: '',
+  handleBack: () => {},
+  handleNext: () => {},
+};
+
+Stepper.propTypes = {
+  steps: Proptypes.arrayOf(Proptypes.string).isRequired,
+  skipStep: Proptypes.number,
+  activeStep: Proptypes.number.isRequired,
+  children: Proptypes.node,
+  handleBack: Proptypes.func,
+  handleNext: Proptypes.func,
 };
 
 export default Stepper;

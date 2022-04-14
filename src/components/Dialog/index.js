@@ -1,4 +1,5 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -21,6 +22,24 @@ const MaterialDialog = ({
       <DialogActions>{footer}</DialogActions>
     </Dialog>
   );
+};
+
+MaterialDialog.defaultProps = {
+  open: false,
+  classes: '',
+  title: '',
+  children: '',
+  footer: '',
+  handleClose: '',
+};
+
+MaterialDialog.propTypes = {
+  open: Proptypes.bool,
+  classes: Proptypes.objectOf(Proptypes.string),
+  title: Proptypes.node,
+  children: Proptypes.node,
+  footer: Proptypes.node,
+  handleClose: Proptypes.func,
 };
 
 export default MaterialDialog;
