@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import { Droppable } from 'react-beautiful-dnd';
 import AddIcon from '@mui/icons-material/Add';
 import './TaskList.scss';
 
@@ -15,8 +16,10 @@ const TaskList = ({
   handleCreateTask,
 }) => {
   const renderTaskList = (taskList) =>
-    taskList?.map((task) => (
+    taskList?.map((task, index) => (
       <TaskCard
+        key={index}
+        index={index}
         {...task}
         assignee={assigneeList?.find(
           (assignee) => assignee?.id == task?.assignee,
@@ -24,27 +27,36 @@ const TaskList = ({
         handleEditTask={handleEditTask}
         handleDeleteTask={handleDeleteTask}
       />
-    )) ?? [];
+    ));
 
   return (
     <Suspense fallback={<Loader />}>
-      <div className="task-list">
-        <div className="task-list_header">
-          <span className="task-list_header_list-type">
-            {taskListType?.label}
-          </span>
-          <span className="task-list_header_task-count">
-            {taskList?.length ?? 0}
-          </span>
-        </div>
-        <Button
-          rootClass="task-list_atnBtn"
-          fullWidth={true}
-          content={<AddIcon />}
-          onClick={() => handleCreateTask(taskListType?.value)}
-        />
-        {renderTaskList(taskList)}
-      </div>
+      <Droppable key={taskListType} droppableId={taskListType?.value}>
+        {(provided, snapshot) => (
+          <div
+            className="task-list"
+            ref={provided?.innerRef}
+            {...provided?.droppableProps}
+          >
+            <div className="task-list_header">
+              <span className="task-list_header_list-type">
+                {taskListType?.label}
+              </span>
+              <span className="task-list_header_task-count">
+                {taskList?.length ?? 0}
+              </span>
+            </div>
+            <Button
+              rootClass="task-list_atnBtn"
+              fullWidth={true}
+              content={<AddIcon />}
+              onClick={() => handleCreateTask(taskListType?.value)}
+            />
+            {renderTaskList(taskList)}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
     </Suspense>
   );
 };

@@ -1,15 +1,17 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { DragDropContext } from 'react-beautiful-dnd';
 import { v4 as uuidv4 } from 'uuid';
 import { containers } from 'routes';
 import { taskStatus, CONTEXT, storage } from 'config';
-import { removeItem } from 'utils/storage';
+import { getItem, setItem, removeItem } from 'utils/storage';
 import {
   updateTodoListAction,
   updateAssignedListAction,
   updateInprogressListAction,
   updateDoneListAction,
+  updateTaskboardAction,
   clearTaskBoardAction,
 } from 'actions/taskboard';
 import { unregisterUserAction } from 'actions/authentication';
@@ -39,12 +41,45 @@ const Taskboard = ({
   const [selectedTask, setSelectedTask] = useState({});
   const [assigneeId, setAssigneeId] = useState('');
   const [searchString, setSearchString] = useState('');
+  const [isDataLoaded, setIsDataLoaded] = useState(false); //helps in identifying when to update local storage
 
   useEffect(() => {
     if (Object.keys(user)?.length === 0) {
       history?.push(`${CONTEXT}/${containers.register}`);
+    } else {
+      const appData = getItem('app');
+      const taskboard = {
+        todoTasks: appData?.project?.taskList?.filter(
+          (task) => task?.status === 'TODO',
+        ),
+        assignedTasks: appData?.project?.taskList?.filter(
+          (task) => task?.status === 'ASN',
+        ),
+        inprogressTasks: appData?.project?.taskList?.filter(
+          (task) => task?.status === 'IP',
+        ),
+        doneTasks: appData?.project?.taskList?.filter(
+          (task) => task?.status === 'DN',
+        ),
+      };
+      actions?.updateTaskboard(taskboard);
+      setIsDataLoaded(true);
     }
   }, []);
+
+  //It will update local-storage to perisit data for multiple session
+  useEffect(() => {
+    if (isDataLoaded) {
+      const appData = getItem('app');
+      appData['project']['taskList'] = [
+        ...todoTasks,
+        ...assignedTasks,
+        ...inprogressTasks,
+        ...doneTasks,
+      ];
+      setItem('app', appData);
+    }
+  }, [todoTasks, assignedTasks, inprogressTasks, doneTasks]);
 
   const handleCloseTaskCreationDialog = () => {
     setOpenTaskType('');
@@ -103,6 +138,89 @@ const Taskboard = ({
     handleDispatchAction(requestBody, taskDetails?.status);
   };
 
+  const handleDragEnd = (result) => {
+    const { source, destination } = result;
+
+    // dropped outside the list
+    if (!destination) {
+      return;
+    }
+
+    let draftTaskboard = {
+      todoTasks,
+      assignedTasks,
+      inprogressTasks,
+      doneTasks,
+    };
+
+    if (source?.droppableId === destination?.droppableId) {
+      let taskList = Array.from(getTasksList(source?.droppableId));
+      const [removed] = taskList.splice(source?.index, 1);
+      taskList.splice(destination?.index, 0, removed);
+      draftTaskboard = updateTaskboard(
+        draftTaskboard,
+        source?.droppableId,
+        taskList,
+      );
+    } else {
+      let sourceTaskList = Array.from(getTasksList(source?.droppableId));
+      let destinationTaskList = Array.from(
+        getTasksList(destination?.droppableId),
+      );
+      const [removed] = sourceTaskList.splice(source.index, 1);
+      removed['status'] = destination?.droppableId;
+      destinationTaskList.splice(destination.index, 0, removed);
+      draftTaskboard = updateTaskboard(
+        draftTaskboard,
+        source?.droppableId,
+        sourceTaskList,
+      );
+      draftTaskboard = updateTaskboard(
+        draftTaskboard,
+        destination?.droppableId,
+        destinationTaskList,
+      );
+    }
+
+    actions?.updateTaskboard(draftTaskboard);
+  };
+
+  const getTasksList = (type) => {
+    switch (type) {
+      case 'TODO':
+        return todoTasks;
+      case 'ASN':
+        return assignedTasks;
+      case 'IP':
+        return inprogressTasks;
+      case 'DN':
+        return doneTasks;
+      default:
+        break;
+    }
+  };
+
+  const updateTaskboard = (taskBoard, type, taskList) => {
+    const result = { ...taskBoard };
+    switch (type) {
+      case 'TODO':
+        result['todoTasks'] = taskList;
+        break;
+      case 'ASN':
+        result['assignedTasks'] = taskList;
+        break;
+      case 'IP':
+        result['inprogressTasks'] = taskList;
+        break;
+      case 'DN':
+        result['doneTasks'] = taskList;
+        break;
+      default:
+        break;
+    }
+    return result;
+  };
+
   const handleUnregister = () => {
     removeItem(storage);
     actions?.unregisterUser();
@@ -152,19 +270,21 @@ const Taskboard = ({
           handleUnregister={handleUnregister}
         />
         <div className="task-board">
-          {taskStatus?.map((status, index) => (
-            <TaskList
-              key={`${status?.value}-${index}`}
-              taskListType={status}
-              assigneeList={[user, ...members]}
-              taskList={renderTasks(status?.value, assigneeId)}
-              handleEditTask={handleEditTask}
-              handleDeleteTask={handleDeleteTask}
-              handleCreateTask={() =>
-                handleOpenTaskCreationDialog(status?.value ?? '')
-              }
-            />
-          ))}
+          <DragDropContext onDragEnd={handleDragEnd}>
+            {taskStatus?.map((status, index) => (
+              <TaskList
+                key={`${status?.value}-${index}`}
+                taskListType={status}
+                assigneeList={[user, ...members]}
+                taskList={renderTasks(status?.value, assigneeId)}
+                handleEditTask={handleEditTask}
+                handleDeleteTask={handleDeleteTask}
+                handleCreateTask={() =>
+                  handleOpenTaskCreationDialog(status?.value ?? '')
+                }
+              />
+            ))}
+          </DragDropContext>
         </div>
         {openTaskCreationDialog && (
           <CreateTaskDialog
@@ -198,6 +318,7 @@ const mapDispatchToProps = (dispatch) => ({
       updateInprogressList: updateInprogressListAction,
       updateDoneList: updateDoneListAction,
       unregisterUser: unregisterUserAction,
+      updateTaskboard: updateTaskboardAction,
       clearTaskBoard: clearTaskBoardAction,
     },
     dispatch,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Draggable } from 'react-beautiful-dnd';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import './TaskCard.scss';
 
@@ -11,6 +12,7 @@ const TaskCard = ({
   description,
   assignee,
   status,
+  index,
   handleEditTask,
   handleDeleteTask,
 }) => {
@@ -20,25 +22,38 @@ const TaskCard = ({
   };
   const taskDetails = { id, title, description, assignee, status };
   return (
-    <Card classname="task-card" onClick={() => handleEditTask(taskDetails)}>
-      <span className="task-card_header">
-        <span className="title" title={title}>
-          {title}
-        </span>
-        <RemoveCircleIcon
-          onClick={(event) => handleonDeleteTask(event, taskDetails)}
-        />
-      </span>
-      <span className="task-card_description" title={description}>
-        {description}
-      </span>
-      <span className="task-card_assignee">
-        <Avatar
-          name={`${assignee?.firstName} ${assignee?.lastName}`}
-          color={assignee?.color ?? '#ec7979'}
-        />
-      </span>
-    </Card>
+    <Draggable key={id} draggableId={id} index={index}>
+      {(provided) => (
+        <div
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <Card
+            classname="task-card"
+            onClick={() => handleEditTask(taskDetails)}
+          >
+            <span className="task-card_header">
+              <span className="title" title={title}>
+                {title}
+              </span>
+              <RemoveCircleIcon
+                onClick={(event) => handleonDeleteTask(event, taskDetails)}
+              />
+            </span>
+            <span className="task-card_description" title={description}>
+              {description}
+            </span>
+            <span className="task-card_assignee">
+              <Avatar
+                name={`${assignee?.firstName} ${assignee?.lastName}`}
+                color={assignee?.color ?? '#ec7979'}
+              />
+            </span>
+          </Card>
+        </div>
+      )}
+    </Draggable>
   );
 };
 

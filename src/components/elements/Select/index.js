@@ -26,8 +26,10 @@ const Select = ({
         value={value}
         onChange={handleChange}
       >
-        {options?.map((option) => (
-          <MenuItem value={option?.value}>{option?.label}</MenuItem>
+        {options?.map((option, index) => (
+          <MenuItem key={index} value={option?.value}>
+            {option?.label}
+          </MenuItem>
         ))}
       </MaterialSelect>
       {error && <FormHelperText>{helperText}</FormHelperText>}
