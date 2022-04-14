@@ -2,10 +2,9 @@ import React, { useState, Suspense, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { v4 as uuidv4 } from 'uuid';
-import { CONTEXT, projectSetupSteps, storage } from 'config';
+import { CONTEXT, projectSetupSteps } from 'config';
 import { containers } from 'routes';
 import { registerUserAction } from 'actions/authentication';
-import { getItem, setItem } from 'utils/storage';
 import { getRandomColor } from 'utils/helper';
 import './Authentication.scss';
 
@@ -38,13 +37,6 @@ const Authentication = ({ user, actions, history }) => {
   const [members, setMembers] = useState([]);
   const [projectDetails, setProjectDetails] = useState({});
   const [isInvalidState, setIsInvalid] = useState({});
-
-  useEffect(() => {
-    const registerData = getItem(storage) ?? {};
-    if (Object.keys(registerData)?.length > 0) {
-      actions?.registerUser(registerData);
-    }
-  }, []);
 
   useEffect(() => {
     if (Object.keys(user)?.length > 0) {
@@ -100,7 +92,6 @@ const Authentication = ({ user, actions, history }) => {
           members,
         };
         actions?.registerUser(requestBody);
-        setItem(storage, requestBody);
       }
     }
   };

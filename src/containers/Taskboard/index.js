@@ -41,45 +41,12 @@ const Taskboard = ({
   const [selectedTask, setSelectedTask] = useState({});
   const [assigneeId, setAssigneeId] = useState('');
   const [searchString, setSearchString] = useState('');
-  const [isDataLoaded, setIsDataLoaded] = useState(false); //helps in identifying when to update local storage
 
   useEffect(() => {
     if (Object.keys(user)?.length === 0) {
       history?.push(`${CONTEXT}/${containers.register}`);
-    } else {
-      const appData = getItem('app');
-      const taskboard = {
-        todoTasks: appData?.project?.taskList?.filter(
-          (task) => task?.status === 'TODO',
-        ),
-        assignedTasks: appData?.project?.taskList?.filter(
-          (task) => task?.status === 'ASN',
-        ),
-        inprogressTasks: appData?.project?.taskList?.filter(
-          (task) => task?.status === 'IP',
-        ),
-        doneTasks: appData?.project?.taskList?.filter(
-          (task) => task?.status === 'DN',
-        ),
-      };
-      actions?.updateTaskboard(taskboard);
-      setIsDataLoaded(true);
     }
   }, []);
-
-  //It will update local-storage to perisit data for multiple session
-  useEffect(() => {
-    if (isDataLoaded) {
-      const appData = getItem('app');
-      appData['project']['taskList'] = [
-        ...todoTasks,
-        ...assignedTasks,
-        ...inprogressTasks,
-        ...doneTasks,
-      ];
-      setItem('app', appData);
-    }
-  }, [todoTasks, assignedTasks, inprogressTasks, doneTasks]);
 
   const handleCloseTaskCreationDialog = () => {
     setOpenTaskType('');

@@ -1,10 +1,18 @@
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import appReducers from 'reducers';
+import { storage } from 'config';
+import { getItem, setItem } from 'utils/storage';
+import { debouncing } from 'utils/helper';
 
-const configureStore = () => {
-  const store = createStore(appReducers, composeWithDevTools());
-  return { store };
-};
+const persistedState = getItem(storage);
 
-export default configureStore();
+const store = createStore(appReducers, persistedState, composeWithDevTools());
+
+store.subscribe(
+  debouncing(() => {
+    setItem(storage, store?.getState());
+  }, 1000),
+);
+
+export default store;

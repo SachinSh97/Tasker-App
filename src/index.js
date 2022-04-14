@@ -5,10 +5,8 @@ import { Provider } from 'react-redux';
 import App from 'containers';
 import reportWebVitals from 'reportWebVitals';
 import { CONTEXT } from 'config';
-import rootStore from 'store';
+import store from 'store';
 import 'index.scss';
-
-const { store } = rootStore;
 
 const RootComponent = () => {
   useEffect(() => {
