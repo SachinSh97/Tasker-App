@@ -62,7 +62,7 @@ const AddMemberForm = ({ members, setMembers }) => {
   };
 
   const handleSubmit = (memberId) => {
-    const draftMembers = [...membersDetail];
+    let draftMembers = [...membersDetail];
 
     draftMembers?.forEach((member) => {
       if (
@@ -75,6 +75,7 @@ const AddMemberForm = ({ members, setMembers }) => {
     });
 
     setMembersDetails(draftMembers);
+    draftMembers = draftMembers?.filter((member) => !member.edit);
     setMembers(draftMembers);
   };
 
