@@ -16,13 +16,16 @@ $root: '.material-textfield';
     }
   }
   .MuiInputBase-input {
-    font-size: 1rem;
+    font-size: 1.14rem;
     letter-spacing: 0.5px;
     line-height: 2;
     padding: 0.5em 0.71em;
+    &.MuiInputBase-inputMultiline {
+      padding: 0;
+    }
 
     &::placeholder {
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-family: $medium-font;
     }
   }

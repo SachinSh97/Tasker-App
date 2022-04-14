@@ -124,14 +124,14 @@ const CreateTaskDialog = ({
   );
 
   return (
-    <Dialog
-      classes={{ paper: 'create-task' }}
-      open={open}
-      title={`${initialState ? 'Edit' : 'Create'} Task`}
-      footer={renderFooter()}
-      handleClose={handleClose}
-    >
-      <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader />}>
+      <Dialog
+        classes={{ paper: 'create-task' }}
+        open={open}
+        title={`${initialState ? 'Edit' : 'Create'} Task`}
+        footer={renderFooter()}
+        handleClose={handleClose}
+      >
         <div className="create-task_body">
           <TextField
             name="title"
@@ -157,12 +157,12 @@ const CreateTaskDialog = ({
             value={formState?.['description'] ?? ''}
             placeholder="Description ... "
             multiline={true}
-            maxRows="4"
+            rows="3"
             onChange={handleOnChange}
           />
         </div>
-      </Suspense>
-    </Dialog>
+      </Dialog>
+    </Suspense>
   );
 };
 

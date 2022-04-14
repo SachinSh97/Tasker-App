@@ -18,6 +18,7 @@ const TextField = ({
   symbol,
   multiline,
   maxRows,
+  rows,
   onBlur,
   onChange,
 }) => {
@@ -34,6 +35,7 @@ const TextField = ({
       fullWidth={fullWidth}
       multiline={multiline}
       maxRows={maxRows}
+      rows={rows}
       InputProps={
         symbol && {
           [`${position}Adornment`]: (
@@ -61,6 +63,7 @@ TextField.defaultProps = {
   value: '',
   multiline: false,
   maxRows: '',
+  rows: '',
   onBlur: () => {},
   onChange: () => {},
 };
@@ -79,6 +82,7 @@ TextField.propTypes = {
   value: Proptypes.string.isRequired,
   multiline: Proptypes.bool,
   maxRows: Proptypes.string,
+  rows: Proptypes.string,
   onBlur: Proptypes.func,
   onChange: Proptypes.func,
 };

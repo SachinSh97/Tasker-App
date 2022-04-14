@@ -8,6 +8,8 @@ $root: '.create-task';
   .MuiDialogTitle-root {
     font-size: 1.42rem;
     font-family: $semi-bold-font;
+    color: $secondary-text-color;
+    padding: 1.2em;
   }
 
   &_body {
@@ -15,6 +17,19 @@ $root: '.create-task';
   }
 
   &_atn {
+    margin-bottom: 1rem;
+    margin-right: 1.14em;
     @include horizontally-spaced-out(0.71em);
+
+    .material-button {
+      &.MuiButton-contained {
+        background-color: $secondary-text-color;
+        width: 12.85em;
+      }
+      &.MuiButton-text {
+        color: $secondary-text-color;
+        width: 12.85em;
+      }
+    }
   }
 }

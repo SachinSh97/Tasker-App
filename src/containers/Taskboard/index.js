@@ -4,8 +4,7 @@ import { bindActionCreators } from 'redux';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { v4 as uuidv4 } from 'uuid';
 import { containers } from 'routes';
-import { taskStatus, CONTEXT, storage } from 'config';
-import { getItem, setItem, removeItem } from 'utils/storage';
+import { taskStatus, CONTEXT } from 'config';
 import {
   updateTodoListAction,
   updateAssignedListAction,
@@ -189,7 +188,6 @@ const Taskboard = ({
   };
 
   const handleUnregister = () => {
-    removeItem(storage);
     actions?.unregisterUser();
     actions?.clearTaskBoard();
     history?.push(`${CONTEXT}/${containers.register}`);
@@ -254,13 +252,17 @@ const Taskboard = ({
           </DragDropContext>
         </div>
         {openTaskCreationDialog && (
-          <CreateTaskDialog
-            open={openTaskCreationDialog}
-            initialState={Object.keys(selectedTask)?.length > 0 && selectedTask}
-            assigneeList={[user, ...members]}
-            handleClose={handleCloseTaskCreationDialog}
-            handleSubmit={handleCreateTask}
-          />
+          <Suspense fallback={<Loader />}>
+            <CreateTaskDialog
+              open={openTaskCreationDialog}
+              initialState={
+                Object.keys(selectedTask)?.length > 0 && selectedTask
+              }
+              assigneeList={[user, ...members]}
+              handleClose={handleCloseTaskCreationDialog}
+              handleSubmit={handleCreateTask}
+            />
+          </Suspense>
         )}
       </Suspense>
     </div>
