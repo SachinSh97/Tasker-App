@@ -72,3 +72,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Screenshots of project to give a little idea about it
 
 ![plot](./src/assets/screenshots/register.png)
+![plot](./src/assets/screenshots/register-error.png)
+![plot](./src/assets/screenshots/add-member.png)
+![plot](./src/assets/screenshots/setup-project.png)
+![plot](./src/assets/screenshots/create-task.png)
+![plot](./src/assets/screenshots/task-board.png)
+![plot](./src/assets/screenshots/drag-drop.png)
+![plot](./src/assets/screenshots/search.png)
+![plot](./src/assets/screenshots/filter.png)
