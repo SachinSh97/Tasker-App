@@ -6,15 +6,15 @@ $root: '.create-task';
   width: 80%;
 
   .MuiDialogTitle-root {
-    font-size: 20px;
+    font-size: 1.42rem;
     font-family: $semi-bold-font;
   }
 
   &_body {
-    @include vertically-spaced-out(14px);
+    @include vertically-spaced-out(1em);
   }
 
   &_atn {
-    @include horizontally-spaced-out(10px);
+    @include horizontally-spaced-out(0.71em);
   }
 }

@@ -5,9 +5,9 @@ $root: '.taskboard-header';
 #{$root} {
   display: flex;
   flex-direction: column;
-  padding: 14px 18px 0 18px;
-  margin-top: 20px;
-  @include vertically-spaced-out(24px);
+  padding: 1em 1.28em 0 1.28em;
+  margin-top: 1.42em;
+  @include vertically-spaced-out(1.71em);
 
   &_search-section {
     display: flex;
@@ -23,7 +23,12 @@ $root: '.taskboard-header';
       justify-content: flex-end;
       align-items: center;
       flex: 2;
-      @include horizontally-spaced-out(8px);
+      @include horizontally-spaced-out(0.57em);
+
+      .name {
+        font-size: 1.14rem;
+        text-transform: capitalize;
+      }
 
       svg {
         cursor: pointer;
@@ -37,17 +42,17 @@ $root: '.taskboard-header';
     align-items: center;
 
     .title {
-      font-size: 28px;
+      font-size: 2rem;
       font-family: $regular-font;
-      letter-spacing: 1px;
-      margin-left: 12px;
-      margin-right: 18px;
+      letter-spacing: 0.03em;
+      margin-left: 0.42em;
+      margin-right: 0.64em;
     }
 
     .members {
       display: flex;
       align-items: center;
-      @include horizontally-spaced-out(1px);
+      @include horizontally-spaced-out(0.07em);
     }
   }
 }

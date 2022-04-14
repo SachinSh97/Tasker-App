@@ -4,7 +4,7 @@ $root: '.authentication';
 
 #{$root} {
   height: 100%;
-  padding: 48px 20px 32px 20px;
+  padding: 3.42em 1.42em 2.28em 1.42em;
   background-color: $primary-theme-color;
 
   &_card {
@@ -13,10 +13,10 @@ $root: '.authentication';
     align-items: center;
     width: 60%;
     margin: auto;
-    @include vertically-spaced-out(14px);
+    @include vertically-spaced-out(1em);
 
     &.card {
-      padding: 32px;
+      padding: 2.28em;
     }
   }
 }

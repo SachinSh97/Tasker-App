@@ -4,13 +4,13 @@ $root: '.registration-form';
 
 #{$root} {
   &_header {
-    font-size: 28px;
+    font-size: 2rem;
     font-family: $semi-bold-font;
     color: $secondary-text-color;
   }
 
   &_error {
-    font-size: 12px;
+    font-size: 0.85rem;
     color: $error-text-color;
     margin: 0 !important;
   }
@@ -18,6 +18,6 @@ $root: '.registration-form';
   &_body {
     display: flex;
     width: 100%;
-    @include horizontally-spaced-out(14px);
+    @include horizontally-spaced-out(1em);
   }
 }

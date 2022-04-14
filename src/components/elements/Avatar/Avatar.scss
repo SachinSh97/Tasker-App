@@ -3,9 +3,9 @@
 $root: '.avatar';
 
 #{$root} {
-  width: 30px;
-  height: 30px;
-  font-size: 12px;
+  font-size: 0.85rem;
+  width: 2.5em;
+  height: 2.5em;
   font-family: $regular-font;
   background: var(--bg-color);
   color: $ternary-text-color;
@@ -18,6 +18,6 @@ $root: '.avatar';
   text-transform: uppercase;
 
   &.active {
-    border: 3px solid $secondary-text-color;
+    border: 0.25em solid $secondary-text-color;
   }
 }

@@ -5,7 +5,7 @@ $root: '.task-board';
 #{$root} {
   display: flex;
   align-items: flex-start;
-  padding: 18px;
-  margin-top: 16px;
-  @include horizontally-spaced-out(14px);
+  padding: 1.28em;
+  margin-top: 1.14em;
+  @include horizontally-spaced-out(1em);
 }

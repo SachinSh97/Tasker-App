@@ -5,7 +5,7 @@ $root: '.task-card';
 #{$root} {
   display: flex;
   flex-direction: column;
-  @include vertically-spaced-out(5px);
+  @include vertically-spaced-out(0.35em);
 
   &_header {
     display: flex;
@@ -14,7 +14,7 @@ $root: '.task-card';
 
     .title {
       font-family: $semi-bold-font;
-      font-size: 16px;
+      font-size: 1.14rem;
       color: $primary-text-color;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -29,7 +29,7 @@ $root: '.task-card';
   }
 
   &_description {
-    font-size: 14px;
+    font-size: 1rem;
     color: $description-text-color;
   }
 

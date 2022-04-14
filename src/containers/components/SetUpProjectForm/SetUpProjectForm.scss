@@ -4,14 +4,14 @@ $root: '.setup-project-form';
 
 #{$root} {
   &_header {
-    font-size: 28px;
+    font-size: 2rem;
     font-family: $semi-bold-font;
     color: $secondary-text-color;
   }
 
   &_body {
     width: 100%;
-    margin-bottom: 40px;
-    @include vertically-spaced-out(14px);
+    margin-bottom: 2.85em;
+    @include vertically-spaced-out(1em);
   }
 }

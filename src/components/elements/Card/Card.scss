@@ -4,9 +4,8 @@ $root: '.card';
 
 #{$root} {
   background-color: $primary-bg-color;
-  border-radius: 8px;
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
-    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-  padding: 20px;
+  border-radius: 0.57em;
+  box-shadow: $card-box-shadow;
+  padding: 1.42em;
   cursor: pointer;
 }
